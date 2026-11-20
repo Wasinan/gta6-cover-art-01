@@ -1,6 +1,11 @@
 # Cover Studio — GTA VI-style poster maker
 
-Entry for make.fun competition **gta6-cover-art-01** ($250, top 50 paid).
+[![make.fun — gta6-cover-art-01](https://img.shields.io/badge/make.fun-gta6--cover--art--01-ff2e88)](https://make.fun/bounty/gta6-cover-art-01)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Dependencies: none](https://img.shields.io/badge/dependencies-none-brightgreen)]()
+
+Entry for make.fun competition **gta6-cover-art-01** ($250, top 50 paid) —
+[https://make.fun/bounty/gta6-cover-art-01](https://make.fun/bounty/gta6-cover-art-01).
 
 A static web app (no build step, no network, no dependencies) that turns a
 person's photo + a caption into cover art in the style of GTA 6's posters:

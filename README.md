@@ -1,8 +1,8 @@
 # Cover Studio
 
-[![GTA 6 Cover Art](https://make.fun/api/badge/competition/gta6-cover-art-01)](https://make.fun/bounty/gta6-cover-art-01)
-[![Repo Rank](https://make.fun/api/badge/repo-rank/Wasinan/gta6-cover-art-01)](https://make.fun/bounty/gta6-cover-art-01)
-[![Repo Reward](https://make.fun/api/badge/repo-reward/Wasinan/gta6-cover-art-01)](https://make.fun/bounty/gta6-cover-art-01)
+[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/Wasinan/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/Wasinan/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
 **Cover Studio** is a fully offline poster maker for cover art. Pick a layout, drop in
 three photos, add a title and subtitle, choose a colour grade, and export a

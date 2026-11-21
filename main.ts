@@ -1,19 +1,28 @@
 // Cover Studio — build entrypoint.
 //
-// `node main.ts` assembles the static app into out/:
+// `node main.ts` assembles the static app into the output directory:
 //   index.html, style.css, app.js, sample.js and samples/
-// Open out/index.html in a desktop browser to use it.
+// Open the output index.html in a desktop browser to use it.
 // No dependencies, no network, no build step beyond this file.
-import { cpSync, mkdirSync, readdirSync, rmSync, statSync } from "node:fs";
+//
+// Where the build goes:
+//   - When MAKEFUN_OUTPUT_DIR is set (the grader runs main.ts on a
+//     read-only repository and mounts an empty writable directory at
+//     that path), the app is written there.
+//   - Otherwise it is written to out/ next to main.ts (local runs).
+// The output directory itself is never removed — on the grader it is a
+// mounted directory; only its contents are overwritten.
+import { cpSync, mkdirSync, readdirSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root: string = resolve(dirname(fileURLToPath(import.meta.url)));
-const outDir: string = join(root, "out");
+const outDir: string = process.env.MAKEFUN_OUTPUT_DIR
+  ? resolve(process.env.MAKEFUN_OUTPUT_DIR)
+  : join(root, "out");
 
 const staticFiles: string[] = ["index.html", "style.css", "app.js", "sample.js"];
 
-rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 
 let total: number = 0;
@@ -26,7 +35,8 @@ for (const f of staticFiles) {
 
 const samplesDir: string = join(outDir, "samples");
 mkdirSync(samplesDir, { recursive: true });
-for (const f of readdirSync(join(root, "samples"))) {
+const sampleFiles: string[] = readdirSync(join(root, "samples")).sort();
+for (const f of sampleFiles) {
   cpSync(join(root, "samples", f), join(samplesDir, f));
   const bytes: number = statSync(join(samplesDir, f)).size;
   total += bytes;
@@ -34,4 +44,4 @@ for (const f of readdirSync(join(root, "samples"))) {
 }
 
 console.log(`Cover Studio built → ${outDir} (${total.toLocaleString("en-US")} bytes total)`);
-console.log("Open out/index.html in a desktop browser.");
+console.log("Open the output index.html in a desktop browser.");

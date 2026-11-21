@@ -3,53 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Studio — GTA 6-style cover art</title>
+<title>Cover Studio — GTA 6 style cover art, in your browser</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
   <h1>Cover Studio</h1>
-  <p class="tag">Turn a photo and a caption into GTA 6-style cover art. Offline, in your browser.</p>
+  <p class="tag">Build a GTA 6 style cover from your own photos. Offline, no upload, no account.</p>
 </header>
 <main>
   <section class="stage-wrap">
-    <canvas id="stage" width="960" height="960"></canvas>
-    <p class="hint">Drag a photo to reposition it. Scroll over the canvas to zoom the photo under your cursor.</p>
+    <canvas id="stage" width="1080" height="1080"></canvas>
+    <div class="hint">Drag a photo to move it &middot; use the zoom sliders to frame it</div>
   </section>
-  <section class="controls">
-    <div class="group">
-      <h2>Layout</h2>
-      <div class="row" id="layouts">
-        <button data-layout="hero" class="active">Hero</button>
-        <button data-layout="split">Split</button>
-        <button data-layout="trio">Trio</button>
-      </div>
+  <section class="panel">
+    <h2>Layout</h2>
+    <div class="row" id="layoutRow">
+      <button data-layout="hero" class="active">Hero</button>
+      <button data-layout="split">Split</button>
+      <button data-layout="trio">Trio</button>
     </div>
-    <div class="group">
-      <h2>Colour grade</h2>
-      <div class="row" id="grades">
-        <button data-grade="vice" class="active">Vice Sunset</button>
-        <button data-grade="neon">Neon Night</button>
-        <button data-grade="noir">Noir</button>
-        <button data-grade="original">Original</button>
-      </div>
-      <button id="randomize" class="wide">🎲 Randomize layout + grade</button>
+    <h2>Photos</h2>
+    <div id="slots"></div>
+    <h2>Caption</h2>
+    <label>Title <input id="titleInput" type="text" value="VICE CITY DAWN" maxlength="40"></label>
+    <label>Subtitle <input id="subtitleInput" type="text" value="Every sunrise is a getaway." maxlength="80"></label>
+    <h2>Grade</h2>
+    <div class="row" id="gradeRow">
+      <button data-grade="original" class="active">Original</button>
+      <button data-grade="vice">Vice Sunset</button>
+      <button data-grade="neon">Neon Night</button>
+      <button data-grade="noir">Noir</button>
     </div>
-    <div class="group">
-      <h2>Caption</h2>
-      <label>Title <input id="title" type="text" value="SUNSET DRIVE" maxlength="40"></label>
-      <label>Subtitle <input id="subtitle" type="text" value="Chase the light. Own the night." maxlength="60"></label>
+    <div class="row">
+      <button id="randomBtn" title="Random layout + grade">🎲 Randomize</button>
+      <label class="check"><input type="checkbox" id="grainToggle" checked> Film grain</label>
     </div>
-    <div class="group" id="slots"></div>
-    <div class="group">
-      <h2>Export PNG</h2>
-      <div class="row">
-        <button data-export="1080x1080">1080 × 1080</button>
-        <button data-export="1080x1350">1080 × 1350</button>
-        <button data-export="1920x1080">1920 × 1080</button>
-      </div>
-      <p class="hint">Exports the exact pixel size, ready to post.</p>
+    <h2>Export PNG</h2>
+    <div class="row">
+      <button data-export="1080x1080">1080 &times; 1080</button>
+      <button data-export="1080x1350">1080 &times; 1350</button>
+      <button data-export="1920x1080">1920 &times; 1080</button>
     </div>
+    <p class="note">Your photos never leave this page — everything runs locally in the browser.</p>
   </section>
 </main>
 <script src="sample.js"></script>

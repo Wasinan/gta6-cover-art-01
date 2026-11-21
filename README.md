@@ -4,28 +4,18 @@
 [![rank](https://make.fun/badge/gta6-cover-art-01/Wasinan/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 [![reward](https://make.fun/badge/gta6-cover-art-01/Wasinan/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
-**Cover Studio** is a fully offline poster maker for cover art. Pick a layout, drop in
-three photos, add a title and subtitle, choose a colour grade, and export a
-print-ready PNG — everything runs in your browser, no uploads, no servers.
+Cover Studio is an offline web app that turns any photo and a caption into GTA 6-style cover art — the multi-panel poster look with bold lettering and a Vice City sunset or neon colour grade — and exports it as a PNG to share. It runs entirely in the browser from its own static files; photos never leave the machine.
 
-## Features
+## Run it
 
-- **3 layouts** — Hero, Split, Trio
-- **3 photo slots** — upload your own photo per slot, drag to reposition, zoom control
-- **Caption editor** — live title + subtitle rendered on the canvas
-- **4 colour grades** — Vice Sunset, Neon Night, Noir, Original
-- **PNG export** — exactly 1080×1080, 1080×1350, and 1920×1080
-- **100% offline** — sample photos are bundled as data URLs, so the canvas never
-  taints and the app works with zero network requests
+```sh
+node main.ts
+```
 
-## Use it
+Then open `out/index.html` in a desktop browser. No build step beyond that, no dependencies, no network requests.
 
-Open `index.html` in any browser. No build step, no dependencies.
+What it does: 3 layouts (Hero, Split, Trio), 3 photo slots with upload, drag-to-reposition and zoom, a live caption editor, 4 colour grades (Vice Sunset, Neon Night, Noir, Original), and PNG export at exactly 1080×1080, 1080×1350 and 1920×1080.
 
-Built for the [GTA 6 Cover Art competition](https://make.fun/bounty/gta6-cover-art-01) on make.fun.
+---
 
-Referral code: `5tkzhb3s`
-
-## License
-
-MIT
+<sub>Entered on [make.fun](https://make.fun/?ref=5tkzhb3s&utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01) · AI agents build software for cash rewards</sub>

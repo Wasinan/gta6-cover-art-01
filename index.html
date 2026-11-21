@@ -1,83 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cover Studio — Poster Maker</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cover Studio — GTA 6-style cover art maker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <h1>COVER STUDIO</h1>
-  <p class="tagline">Build your own cover art. Three photos, one poster.</p>
+  <h1>Cover Studio</h1>
+  <p>Turn any photo and a caption into GTA 6-style cover art. Offline — your photos never leave this machine.</p>
 </header>
 
 <main>
-  <section class="stage">
-    <canvas id="poster" width="1080" height="1080"></canvas>
-    <p class="hint">Drag a photo on the canvas to reposition it.</p>
+  <section class="panel" id="controls">
+    <h2>Layout</h2>
+    <div class="row" id="layoutRow">
+      <button data-layout="hero" class="active">Hero</button>
+      <button data-layout="split">Split</button>
+      <button data-layout="trio">Trio</button>
+    </div>
+
+    <h2>Colour grade</h2>
+    <div class="row" id="gradeRow">
+      <button data-grade="vice" class="active">Vice Sunset</button>
+      <button data-grade="neon">Neon Night</button>
+      <button data-grade="noir">Noir</button>
+      <button data-grade="original">Original</button>
+    </div>
+
+    <h2>Caption</h2>
+    <label>Title <input id="titleInput" type="text" value="VICE CITY" maxlength="40"></label>
+    <label>Subtitle <input id="subtitleInput" type="text" value="One city. Three stories." maxlength="80"></label>
+
+    <h2>Photos</h2>
+    <div id="slots"></div>
+
+    <h2>Export PNG</h2>
+    <div class="row" id="exportRow">
+      <button data-export="1080x1080">1080 × 1080</button>
+      <button data-export="1080x1350">1080 × 1350</button>
+      <button data-export="1920x1080">1920 × 1080</button>
+    </div>
+    <p class="hint">Tip: click a panel on the canvas to select its photo, then drag it to reposition.</p>
   </section>
 
-  <section class="controls">
-    <div class="group">
-      <h2>Layout</h2>
-      <div class="btn-row" id="layoutBtns">
-        <button data-layout="hero" class="active">Hero</button>
-        <button data-layout="split">Split</button>
-        <button data-layout="trio">Trio</button>
-      </div>
-    </div>
-
-    <div class="group">
-      <h2>Colour grade</h2>
-      <div class="btn-row" id="gradeBtns">
-        <button data-grade="original" class="active">Original</button>
-        <button data-grade="vice">Vice Sunset</button>
-        <button data-grade="neon">Neon Night</button>
-        <button data-grade="noir">Noir</button>
-      </div>
-    </div>
-
-    <div class="group">
-      <h2>Photos</h2>
-      <div class="slot" data-slot="0">
-        <label>Photo 1 <input type="file" accept="image/*" data-upload="0"></label>
-        <label>Zoom <input type="range" min="1" max="3" step="0.05" value="1" data-zoom="0"></label>
-        <button data-sample="0">Use sample 1</button>
-      </div>
-      <div class="slot" data-slot="1">
-        <label>Photo 2 <input type="file" accept="image/*" data-upload="1"></label>
-        <label>Zoom <input type="range" min="1" max="3" step="0.05" value="1" data-zoom="1"></label>
-        <button data-sample="1">Use sample 2</button>
-      </div>
-      <div class="slot" data-slot="2">
-        <label>Photo 3 <input type="file" accept="image/*" data-upload="2"></label>
-        <label>Zoom <input type="range" min="1" max="3" step="0.05" value="1" data-zoom="2"></label>
-        <button data-sample="2">Use sample 3</button>
-      </div>
-    </div>
-
-    <div class="group">
-      <h2>Caption</h2>
-      <label>Title <input type="text" id="titleInput" value="VICE CITY NIGHTS" maxlength="40"></label>
-      <label>Subtitle <input type="text" id="subtitleInput" value="A story in three frames" maxlength="60"></label>
-    </div>
-
-    <div class="group">
-      <h2>Export PNG</h2>
-      <div class="btn-row" id="exportBtns">
-        <button data-export="1080x1080">1080 &times; 1080</button>
-        <button data-export="1080x1350">1080 &times; 1350</button>
-        <button data-export="1920x1080">1920 &times; 1080</button>
-      </div>
-      <p class="note">Exports a PNG at the exact size. No upload, everything stays in your browser.</p>
-    </div>
+  <section class="panel" id="stagePanel">
+    <canvas id="stage" width="540" height="675"></canvas>
+    <p class="hint" id="status">Loading samples…</p>
   </section>
 </main>
-
-<footer>
-  <p>Cover Studio — a fully offline poster maker. No logos, no stock art, just your photos.</p>
-</footer>
 
 <script src="sample.js"></script>
 <script src="app.js"></script>

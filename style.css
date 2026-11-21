@@ -1,90 +1,87 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
+* { box-sizing: border-box; }
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
   background: #0d0d12;
   color: #f2f2f5;
-  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-header { text-align: center; padding: 28px 16px 8px; }
+header { padding: 20px 24px 8px; }
 header h1 {
-  font-size: 2.4rem;
-  letter-spacing: 0.35em;
-  background: linear-gradient(90deg, #ff7a3d, #ff2e88, #7a5cff);
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffb347, #ff2d78 55%, #7b2fff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.tagline { color: #9a9aad; margin-top: 4px; }
-
+header p { margin: 6px 0 0; color: #b9b9c4; }
 main {
   display: flex;
+  gap: 20px;
+  padding: 16px 24px 28px;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
-
-.stage { flex: 1 1 420px; max-width: 560px; }
-#poster {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-  cursor: grab;
-  touch-action: none;
-}
-#poster:active { cursor: grabbing; }
-.hint { color: #9a9aad; font-size: 0.85rem; text-align: center; margin-top: 8px; }
-
-.controls { flex: 1 1 320px; max-width: 420px; display: flex; flex-direction: column; gap: 18px; }
-
-.group {
+.panel {
   background: #17171f;
-  border: 1px solid #262633;
+  border: 1px solid #2a2a35;
   border-radius: 12px;
   padding: 16px;
 }
-.group h2 {
-  font-size: 0.8rem;
+#controls { width: 340px; }
+#controls h2 {
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #9a9aad;
-  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+  color: #9a9aa8;
+  margin: 18px 0 8px;
 }
-.group label { display: block; margin-bottom: 8px; font-size: 0.9rem; }
-.group input[type="text"] {
-  width: 100%;
-  padding: 8px 10px;
-  margin-top: 4px;
-  background: #0d0d12;
-  border: 1px solid #333344;
-  border-radius: 6px;
-  color: #f2f2f5;
-  font-size: 1rem;
-}
-.group input[type="range"] { width: 100%; accent-color: #ff2e88; }
-
-.btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+#controls h2:first-child { margin-top: 0; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
 button {
-  background: #23232f;
+  background: #262633;
   color: #f2f2f5;
-  border: 1px solid #333344;
+  border: 1px solid #3a3a4a;
   border-radius: 8px;
-  padding: 9px 14px;
-  font-size: 0.9rem;
+  padding: 9px 13px;
+  font-size: 14px;
   cursor: pointer;
 }
-button:hover { border-color: #ff2e88; }
-button.active { background: #ff2e88; border-color: #ff2e88; }
-
-.slot { border-top: 1px solid #262633; padding-top: 10px; margin-top: 10px; }
-.slot:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
-.slot input[type="file"] { display: block; margin-top: 4px; font-size: 0.85rem; }
-
-.note { color: #9a9aad; font-size: 0.85rem; margin-top: 10px; }
-footer { text-align: center; color: #777788; font-size: 0.85rem; padding: 16px; }
+button:hover { border-color: #ff2d78; }
+button.active { background: #ff2d78; border-color: #ff2d78; }
+label { display: block; font-size: 13px; color: #b9b9c4; margin: 6px 0; }
+label input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #3a3a4a;
+  background: #101018;
+  color: #f2f2f5;
+  font-size: 14px;
+}
+.slot {
+  border: 1px solid #2a2a35;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+.slot.selected { border-color: #ff2d78; }
+.slot .slot-head { display: flex; justify-content: space-between; align-items: center; }
+.slot .slot-head strong { font-size: 14px; }
+.slot .slot-head button { padding: 5px 9px; font-size: 12px; }
+.slot input[type="range"] { width: 100%; margin: 8px 0 2px; }
+.slot .zoom-label { font-size: 12px; color: #9a9aa8; }
+#stagePanel { flex: 1; min-width: 320px; text-align: center; }
+#stage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #111;
+  cursor: grab;
+}
+#stage:active { cursor: grabbing; }
+.hint { font-size: 12px; color: #9a9aa8; }

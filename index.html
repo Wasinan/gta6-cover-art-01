@@ -1,117 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Studio — GTA VI-style poster maker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cover Studio — Poster Maker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-mark">CS</div>
-    <div>
-      <div class="brand-name">COVER STUDIO</div>
-      <div class="brand-sub">GTA VI–style poster maker &middot; unofficial fan tool &middot; 100% offline, photos never leave your machine</div>
-    </div>
-  </div>
-  <div class="top-actions">
-    <button id="loadSample" class="btn">Load sample set</button>
-    <button id="resetAll" class="btn ghost">Reset</button>
-  </div>
+<header>
+  <h1>COVER STUDIO</h1>
+  <p class="tagline">Build your own cover art. Three photos, one poster.</p>
 </header>
 
 <main>
   <section class="stage">
-    <div class="canvas-wrap">
-      <canvas id="preview" width="900" height="900"></canvas>
-    </div>
-    <p class="hint">Click a panel to select it &middot; drag to move its photo &middot; scroll to zoom &middot; drop an image file anywhere on the canvas</p>
-    <div class="stage-foot">
-      <span id="activeLabel">Panel A selected</span>
-      <span id="sizeLabel">Square 1080 &times; 1080</span>
-    </div>
+    <canvas id="poster" width="1080" height="1080"></canvas>
+    <p class="hint">Drag a photo on the canvas to reposition it.</p>
   </section>
 
-  <aside class="controls">
-    <section class="ctl">
-      <h2>1 &middot; Layout</h2>
-      <div class="seg" id="layoutSeg">
-        <button data-layout="hero" class="on">
-          <span class="mini hero"><i></i><i></i><i></i></span>Hero
-        </button>
-        <button data-layout="split">
-          <span class="mini split"><i></i><i></i></span>Split
-        </button>
-        <button data-layout="trio">
-          <span class="mini trio"><i></i><i></i><i></i></span>Trio
-        </button>
+  <section class="controls">
+    <div class="group">
+      <h2>Layout</h2>
+      <div class="btn-row" id="layoutBtns">
+        <button data-layout="hero" class="active">Hero</button>
+        <button data-layout="split">Split</button>
+        <button data-layout="trio">Trio</button>
       </div>
-      <p class="note">Hero: one big portrait + two small panels. Split: two halves. Trio: three stacked bands.</p>
-    </section>
+    </div>
 
-    <section class="ctl">
-      <h2>2 &middot; Photos</h2>
-      <div id="slots"></div>
-      <p class="note">Each panel crops its photo to fill (&ldquo;cover&rdquo;). Drag the photo in the preview or use the zoom slider.</p>
-    </section>
+    <div class="group">
+      <h2>Colour grade</h2>
+      <div class="btn-row" id="gradeBtns">
+        <button data-grade="original" class="active">Original</button>
+        <button data-grade="vice">Vice Sunset</button>
+        <button data-grade="neon">Neon Night</button>
+        <button data-grade="noir">Noir</button>
+      </div>
+    </div>
 
-    <section class="ctl">
-      <h2>3 &middot; Caption</h2>
-      <label class="field">Title
-        <input id="capTitle" type="text" value="VICE CITY" maxlength="24" spellcheck="false">
-      </label>
-      <label class="field">Subtitle
-        <input id="capSub" type="text" value="WELCOME TO THE SUNSHINE STATE" maxlength="48" spellcheck="false">
-      </label>
-      <div class="row">
-        <label class="field grow">Title size
-          <input id="capSize" type="range" min="48" max="210" value="118">
-        </label>
-        <div class="seg small" id="capPosSeg">
-          <button data-pos="top">Top</button>
-          <button data-pos="bottom" class="on">Bottom</button>
-        </div>
+    <div class="group">
+      <h2>Photos</h2>
+      <div class="slot" data-slot="0">
+        <label>Photo 1 <input type="file" accept="image/*" data-upload="0"></label>
+        <label>Zoom <input type="range" min="1" max="3" step="0.05" value="1" data-zoom="0"></label>
+        <button data-sample="0">Use sample 1</button>
       </div>
-      <div class="row">
-        <span class="lbl">Text colour</span>
-        <div class="swatches" id="capColor">
-          <button data-color="#ffffff" class="on" style="background:#ffffff" title="White"></button>
-          <button data-color="#111111" style="background:#111111" title="Black"></button>
-          <button data-color="#ff2e88" style="background:#ff2e88" title="Hot pink"></button>
-          <button data-color="#22d3ee" style="background:#22d3ee" title="Cyan"></button>
-          <button data-color="#ffd166" style="background:#ffd166" title="Gold"></button>
-        </div>
-        <label class="check"><input id="capOutline" type="checkbox" checked> Outline</label>
+      <div class="slot" data-slot="1">
+        <label>Photo 2 <input type="file" accept="image/*" data-upload="1"></label>
+        <label>Zoom <input type="range" min="1" max="3" step="0.05" value="1" data-zoom="1"></label>
+        <button data-sample="1">Use sample 2</button>
       </div>
-    </section>
+      <div class="slot" data-slot="2">
+        <label>Photo 3 <input type="file" accept="image/*" data-upload="2"></label>
+        <label>Zoom <input type="range" min="1" max="3" step="0.05" value="1" data-zoom="2"></label>
+        <button data-sample="2">Use sample 3</button>
+      </div>
+    </div>
 
-    <section class="ctl">
-      <h2>4 &middot; Colour grade</h2>
-      <div class="grades" id="gradeSeg">
-        <button data-grade="sunset" class="on"><span class="gsw sunset"></span>Vice Sunset</button>
-        <button data-grade="neon"><span class="gsw neon"></span>Neon Night</button>
-        <button data-grade="noir"><span class="gsw noir"></span>Noir</button>
-        <button data-grade="original"><span class="gsw original"></span>Original</button>
-      </div>
-    </section>
+    <div class="group">
+      <h2>Caption</h2>
+      <label>Title <input type="text" id="titleInput" value="VICE CITY NIGHTS" maxlength="40"></label>
+      <label>Subtitle <input type="text" id="subtitleInput" value="A story in three frames" maxlength="60"></label>
+    </div>
 
-    <section class="ctl">
-      <h2>5 &middot; Export</h2>
-      <div class="seg" id="sizeSeg">
-        <button data-size="square" class="on">Square<br><small>1080 &times; 1080</small></button>
-        <button data-size="portrait">Portrait<br><small>1080 &times; 1350</small></button>
-        <button data-size="wide">Wide<br><small>1920 &times; 1080</small></button>
+    <div class="group">
+      <h2>Export PNG</h2>
+      <div class="btn-row" id="exportBtns">
+        <button data-export="1080x1080">1080 &times; 1080</button>
+        <button data-export="1080x1350">1080 &times; 1350</button>
+        <button data-export="1920x1080">1920 &times; 1080</button>
       </div>
-      <button id="exportBtn" class="btn big">Export PNG</button>
-      <p class="note" id="exportNote">Renders at full export resolution, straight from the canvas.</p>
-    </section>
-  </aside>
+      <p class="note">Exports a PNG at the exact size. No upload, everything stays in your browser.</p>
+    </div>
+  </section>
 </main>
 
 <footer>
-  Cover Studio is an unofficial fan-made tool. It contains no Rockstar Games logo, artwork or fonts.
-  All artwork is generated by you, from your own photos. Runs fully offline &mdash; no uploads, no tracking.
+  <p>Cover Studio — a fully offline poster maker. No logos, no stock art, just your photos.</p>
 </footer>
 
 <script src="sample.js"></script>

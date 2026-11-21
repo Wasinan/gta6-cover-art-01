@@ -1,87 +1,84 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: #0d0d12;
-  color: #f2f2f5;
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0d0714;
+  color: #f4ecff;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
-header { padding: 20px 24px 8px; }
+header { padding: 22px 28px 6px; }
 header h1 {
   margin: 0;
   font-size: 34px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #ffb347, #ff2d78 55%, #7b2fff);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff6b9d, #ffb347, #7df9ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-header p { margin: 6px 0 0; color: #b9b9c4; }
+.tag { margin: 6px 0 0; color: #b9a8d6; }
 main {
   display: flex;
-  gap: 20px;
-  padding: 16px 24px 28px;
-  align-items: flex-start;
   flex-wrap: wrap;
+  gap: 28px;
+  padding: 18px 28px 40px;
 }
-.panel {
-  background: #17171f;
-  border: 1px solid #2a2a35;
+.stage-wrap { flex: 1 1 480px; max-width: 640px; }
+#stage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  background: #1a0f28;
+  box-shadow: 0 8px 40px rgba(255, 46, 136, 0.25);
+  cursor: grab;
+  touch-action: none;
+}
+#stage:active { cursor: grabbing; }
+.hint { color: #8d7cab; font-size: 13px; }
+.controls { flex: 1 1 320px; max-width: 430px; }
+.group {
+  background: #1a0f28;
+  border: 1px solid #33204f;
   border-radius: 12px;
-  padding: 16px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
 }
-#controls { width: 340px; }
-#controls h2 {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #9a9aa8;
-  margin: 18px 0 8px;
-}
-#controls h2:first-child { margin-top: 0; }
+.group h2 { margin: 0 0 10px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #ffb347; }
 .row { display: flex; gap: 8px; flex-wrap: wrap; }
 button {
-  background: #262633;
-  color: #f2f2f5;
-  border: 1px solid #3a3a4a;
+  background: #2a1745;
+  color: #f4ecff;
+  border: 1px solid #4d2a72;
   border-radius: 8px;
   padding: 9px 13px;
   font-size: 14px;
   cursor: pointer;
 }
-button:hover { border-color: #ff2d78; }
-button.active { background: #ff2d78; border-color: #ff2d78; }
-label { display: block; font-size: 13px; color: #b9b9c4; margin: 6px 0; }
-label input[type="text"] {
+button:hover { background: #3a2160; }
+button.active { background: #ff2e88; border-color: #ff2e88; }
+button.wide { width: 100%; margin-top: 10px; }
+label { display: block; margin-bottom: 10px; font-size: 14px; color: #cdbde8; }
+input[type="text"] {
   display: block;
   width: 100%;
   margin-top: 4px;
   padding: 9px 10px;
   border-radius: 8px;
-  border: 1px solid #3a3a4a;
-  background: #101018;
-  color: #f2f2f5;
-  font-size: 14px;
+  border: 1px solid #4d2a72;
+  background: #120a1e;
+  color: #f4ecff;
+  font-size: 15px;
 }
-.slot {
-  border: 1px solid #2a2a35;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 8px;
+.slot { border-top: 1px solid #33204f; padding-top: 10px; margin-top: 10px; }
+.slot:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+.slot h3 { margin: 0 0 8px; font-size: 14px; color: #7df9ff; }
+.slot .row { align-items: center; }
+.slot input[type="range"] { flex: 1; accent-color: #ff2e88; }
+.slot .zoom-val { min-width: 42px; text-align: right; color: #cdbde8; font-size: 13px; }
+.slot .file-btn { position: relative; overflow: hidden; }
+.slot .file-btn input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
 }
-.slot.selected { border-color: #ff2d78; }
-.slot .slot-head { display: flex; justify-content: space-between; align-items: center; }
-.slot .slot-head strong { font-size: 14px; }
-.slot .slot-head button { padding: 5px 9px; font-size: 12px; }
-.slot input[type="range"] { width: 100%; margin: 8px 0 2px; }
-.slot .zoom-label { font-size: 12px; color: #9a9aa8; }
-#stagePanel { flex: 1; min-width: 320px; text-align: center; }
-#stage {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  background: #111;
-  cursor: grab;
-}
-#stage:active { cursor: grabbing; }
-.hint { font-size: 12px; color: #9a9aa8; }

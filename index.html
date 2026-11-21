@@ -3,54 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Studio — GTA 6-style cover art maker</title>
+<title>Cover Studio — GTA 6-style cover art</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
   <h1>Cover Studio</h1>
-  <p>Turn any photo and a caption into GTA 6-style cover art. Offline — your photos never leave this machine.</p>
+  <p class="tag">Turn a photo and a caption into GTA 6-style cover art. Offline, in your browser.</p>
 </header>
-
 <main>
-  <section class="panel" id="controls">
-    <h2>Layout</h2>
-    <div class="row" id="layoutRow">
-      <button data-layout="hero" class="active">Hero</button>
-      <button data-layout="split">Split</button>
-      <button data-layout="trio">Trio</button>
-    </div>
-
-    <h2>Colour grade</h2>
-    <div class="row" id="gradeRow">
-      <button data-grade="vice" class="active">Vice Sunset</button>
-      <button data-grade="neon">Neon Night</button>
-      <button data-grade="noir">Noir</button>
-      <button data-grade="original">Original</button>
-    </div>
-
-    <h2>Caption</h2>
-    <label>Title <input id="titleInput" type="text" value="VICE CITY" maxlength="40"></label>
-    <label>Subtitle <input id="subtitleInput" type="text" value="One city. Three stories." maxlength="80"></label>
-
-    <h2>Photos</h2>
-    <div id="slots"></div>
-
-    <h2>Export PNG</h2>
-    <div class="row" id="exportRow">
-      <button data-export="1080x1080">1080 × 1080</button>
-      <button data-export="1080x1350">1080 × 1350</button>
-      <button data-export="1920x1080">1920 × 1080</button>
-    </div>
-    <p class="hint">Tip: click a panel on the canvas to select its photo, then drag it to reposition.</p>
+  <section class="stage-wrap">
+    <canvas id="stage" width="960" height="960"></canvas>
+    <p class="hint">Drag a photo to reposition it. Scroll over the canvas to zoom the photo under your cursor.</p>
   </section>
-
-  <section class="panel" id="stagePanel">
-    <canvas id="stage" width="540" height="675"></canvas>
-    <p class="hint" id="status">Loading samples…</p>
+  <section class="controls">
+    <div class="group">
+      <h2>Layout</h2>
+      <div class="row" id="layouts">
+        <button data-layout="hero" class="active">Hero</button>
+        <button data-layout="split">Split</button>
+        <button data-layout="trio">Trio</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>Colour grade</h2>
+      <div class="row" id="grades">
+        <button data-grade="vice" class="active">Vice Sunset</button>
+        <button data-grade="neon">Neon Night</button>
+        <button data-grade="noir">Noir</button>
+        <button data-grade="original">Original</button>
+      </div>
+      <button id="randomize" class="wide">🎲 Randomize layout + grade</button>
+    </div>
+    <div class="group">
+      <h2>Caption</h2>
+      <label>Title <input id="title" type="text" value="SUNSET DRIVE" maxlength="40"></label>
+      <label>Subtitle <input id="subtitle" type="text" value="Chase the light. Own the night." maxlength="60"></label>
+    </div>
+    <div class="group" id="slots"></div>
+    <div class="group">
+      <h2>Export PNG</h2>
+      <div class="row">
+        <button data-export="1080x1080">1080 × 1080</button>
+        <button data-export="1080x1350">1080 × 1350</button>
+        <button data-export="1920x1080">1920 × 1080</button>
+      </div>
+      <p class="hint">Exports the exact pixel size, ready to post.</p>
+    </div>
   </section>
 </main>
-
 <script src="sample.js"></script>
 <script src="app.js"></script>
 </body>

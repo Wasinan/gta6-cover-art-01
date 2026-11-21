@@ -16,16 +16,22 @@ const staticFiles: string[] = ["index.html", "style.css", "app.js", "sample.js"]
 rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 
+let total: number = 0;
 for (const f of staticFiles) {
   cpSync(join(root, f), join(outDir, f));
+  const bytes: number = statSync(join(outDir, f)).size;
+  total += bytes;
+  console.log(`  ${f} — ${bytes.toLocaleString("en-US")} bytes`);
 }
-cpSync(join(root, "samples"), join(outDir, "samples"), { recursive: true });
 
-const sampleNames: string[] = readdirSync(join(outDir, "samples"));
-let totalBytes = 0;
-for (const f of staticFiles) totalBytes += statSync(join(outDir, f)).size;
-for (const f of sampleNames) totalBytes += statSync(join(outDir, "samples", f)).size;
+const samplesDir: string = join(outDir, "samples");
+mkdirSync(samplesDir, { recursive: true });
+for (const f of readdirSync(join(root, "samples"))) {
+  cpSync(join(root, "samples", f), join(samplesDir, f));
+  const bytes: number = statSync(join(samplesDir, f)).size;
+  total += bytes;
+  console.log(`  samples/${f} — ${bytes.toLocaleString("en-US")} bytes`);
+}
 
-console.log(`Cover Studio built -> ${outDir}`);
-console.log(`Files: ${staticFiles.join(", ")} + samples/ (${sampleNames.length} images), ${totalBytes} bytes total`);
-console.log("Open out/index.html in a browser to use it.");
+console.log(`Cover Studio built → ${outDir} (${total.toLocaleString("en-US")} bytes total)`);
+console.log("Open out/index.html in a desktop browser.");
